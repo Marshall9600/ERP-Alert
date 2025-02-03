@@ -1,0 +1,34 @@
+.fc-toolbar {
+  margin: 0px;
+  padding: 0px;
+}
+
+.fc-toolbar .fc-button {
+  margin-top: 0px;
+  padding: 5px 10px;
+  border-radius: 0% !important;
+}
+
+.fc-unthemed .fc-prev-button:after {
+  content: none;
+}
+
+.fc-unthemed .fc-next-button:after {
+  content: none;
+}
+
+.fc-unthemed .fc-today-button:after {
+  content: none;
+}
+
+.fc-unthemed .fc-month-button:after {
+  content: none;
+}
+
+.fc-unthemed .fc-agendaWeek-button:after {
+  content: none;
+}
+
+.fc-unthemed .fc-agendaDay-button:after {
+  content: none;
+}
