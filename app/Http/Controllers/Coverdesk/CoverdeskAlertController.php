@@ -113,16 +113,15 @@ class CoverdeskAlertController
         // COUNT
 
         // TEST
-        // $source = $_GET['input'];
-        // $response = new Response($source);
+        $source = $_GET['input'];
+        $response = new Response($source);
         // TEST
-        
 
         return view('layouts.Coverdesk.Alert.index', compact(
             'tabtop', 'tabsub', // NAVBAR
             'ModelPaginate', // DATA
             'sortDirection', 'getOverallFilter', 'getCreatedDateFromFilter', 'getCreatedDateToFilter', 'getAlertIDFilter', 'getStatusFilter', 'getCustodyFilter', 'getTicketFilter', // FILTER
-            'TotalNewCount', 'TotalConvertedCount', 'TotalActiveCount', 'TotalOverallCount', // COUNT
+            'TotalNewCount', 'TotalConvertedCount', 'TotalActiveCount', 'TotalOverallCount', 'response', // COUNT
         ));
     }
     // INDEX
