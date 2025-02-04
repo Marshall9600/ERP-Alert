@@ -322,31 +322,31 @@ class CoverdeskAlertController
         $ModelData->save();
 
         // TEST
-            $source = $_GET['input'];
-            $response = new Response($source);
+            // $source = $_GET['input'];
+            // $response = new Response($source);
 
             // Reflected XSS
-            $query = $request->input('query');
-            return response("You searched for: " . $query);
+            // $query = $request->input('query');
+            // return response("You searched for: " . $query);
 
             // XSS via URL Redirects
             $url = $request->input('next');
             return redirect($url);
 
             // Allowing unfiltered HTML content in WordPress is security-sensitive
-            define( 'DISALLOW_UNFILTERED_HTML', false );
+            // define( 'DISALLOW_UNFILTERED_HTML', false );
 
             // Remote Code Execution (RCE)
-            $command = $request->input('cmd');
-            return shell_exec($command);
+            // $command = $request->input('cmd');
+            // return shell_exec($command);
 
             // SQL Injection (SQLi)
-            $keyword = $request->input('query');
-            $users = DB::select("SELECT * FROM users WHERE name = '$keyword'"); // 🚨 Vulnerable to SQLi
-            return response()->json($users);
+            // $keyword = $request->input('query');
+            // $users = DB::select("SELECT * FROM users WHERE name = '$keyword'"); // 🚨 Vulnerable to SQLi
+            // return response()->json($users);
         // TEST
 
-        return redirect()->route('coverdesk.alert')->with('coverdesk-alert-delete', 'Deleted');
+        // return redirect()->route('coverdesk.alert')->with('coverdesk-alert-delete', 'Deleted');
     }
     // UPDATE
 
