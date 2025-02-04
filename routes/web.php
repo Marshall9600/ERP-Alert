@@ -44,8 +44,6 @@ Route::middleware([
 ])->group(function () {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // ALERT
-    Route::post('/coverdesk/ticket/store', 'Coverdesk\CoverdeskTicketController@TicketStore')->name('coverdesk.ticket.store');
-    Route::post('/coverdesk/ticket/edit', 'Coverdesk\CoverdeskTicketController@TicketEdit')->name('coverdesk.ticket.edit');
     Route::get('/coverdesk/alert', 'Coverdesk\CoverdeskAlertController@AlertIndex')->name('coverdesk.alert');
     Route::get('/coverdesk/alert/edit', 'Coverdesk\CoverdeskAlertController@AlertEdit')->name('coverdesk.alert.edit');
     Route::put('/coverdesk/alert/download/attachment', 'Coverdesk\CoverdeskAlertController@AlertDownloadAttachment')->name('coverdesk.alert.download.attachment');

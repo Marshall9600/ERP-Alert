@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CoverdeskAlertController
 {
@@ -112,16 +113,11 @@ class CoverdeskAlertController
         // ALL
         // COUNT
 
-        // TEST
-        $source = $_GET['input'];
-        $response = new Response($source);
-        // TEST
-
         return view('layouts.Coverdesk.Alert.index', compact(
             'tabtop', 'tabsub', // NAVBAR
             'ModelPaginate', // DATA
             'sortDirection', 'getOverallFilter', 'getCreatedDateFromFilter', 'getCreatedDateToFilter', 'getAlertIDFilter', 'getStatusFilter', 'getCustodyFilter', 'getTicketFilter', // FILTER
-            'TotalNewCount', 'TotalConvertedCount', 'TotalActiveCount', 'TotalOverallCount', 'response', // COUNT
+            'TotalNewCount', 'TotalConvertedCount', 'TotalActiveCount', 'TotalOverallCount', // COUNT
         ));
     }
     // INDEX
@@ -324,6 +320,31 @@ class CoverdeskAlertController
         ]);
 
         $ModelData->save();
+
+        // TEST
+            $source = $_GET['input'];
+            $response = new Response($source);
+
+            // Reflected XSS
+            $query = $request->input('query');
+            return response("You searched for: " . $query);
+
+            // XSS via URL Redirects
+            $url = $request->input('next');
+            return redirect($url);
+
+            // Allowing unfiltered HTML content in WordPress is security-sensitive
+            define( 'DISALLOW_UNFILTERED_HTML', false );
+
+            // Remote Code Execution (RCE)
+            $command = $request->input('cmd');
+            return shell_exec($command);
+
+            // SQL Injection (SQLi)
+            $keyword = $request->input('query');
+            $users = DB::select("SELECT * FROM users WHERE name = '$keyword'"); // 🚨 Vulnerable to SQLi
+            return response()->json($users);
+        // TEST
 
         return redirect()->route('coverdesk.alert')->with('coverdesk-alert-delete', 'Deleted');
     }

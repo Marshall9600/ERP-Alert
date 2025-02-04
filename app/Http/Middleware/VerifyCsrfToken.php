@@ -14,7 +14,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        '/coverdesk/alert'
     ];
 
     public function handle($request, Closure $next)
